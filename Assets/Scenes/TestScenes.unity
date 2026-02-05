@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4209592458465350044, guid: 33ff6263bf49cf04da04f0af2cf04340, type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 162860, guid: 33ff6263bf49cf04da04f0af2cf04340, type: 3}
       propertyPath: m_Name
       value: Character_Hero_Knight_Male 1
@@ -600,6 +604,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &571171945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5839258399205244968, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
+  m_PrefabInstance: {fileID: 1102317565}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571171937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7cbac88a629b240b1e8d1ce4a44b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1 &828641738
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +748,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828641738}
   m_CullTransparentMesh: 1
+--- !u!114 &841105790 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1082376394459230195, guid: 7375c3189aa318f41bbd564992774426, type: 3}
+  m_PrefabInstance: {fileID: 955259287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efdad00f400a674ea83a33ecedf81b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hero
 --- !u!1001 &955259287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -783,6 +809,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422474, guid: 7375c3189aa318f41bbd564992774426, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082376394459230195, guid: 7375c3189aa318f41bbd564992774426, type: 3}
+      propertyPath: state
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -840,6 +870,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404400, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5839258399205244968, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
+      propertyPath: state
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1377,9 +1411,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestScene
   characters:
-  - {fileID: -4209592458465350044, guid: 33ff6263bf49cf04da04f0af2cf04340, type: 3}
-  - {fileID: 1082376394459230195, guid: 7375c3189aa318f41bbd564992774426, type: 3}
-  - {fileID: 5839258399205244968, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
+  - {fileID: 1692921366}
+  - {fileID: 841105790}
+  - {fileID: 571171945}
+--- !u!114 &1692921366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4209592458465350044, guid: 33ff6263bf49cf04da04f0af2cf04340, type: 3}
+  m_PrefabInstance: {fileID: 34992834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efdad00f400a674ea83a33ecedf81b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hero
 --- !u!1 &1820452106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,8 +1994,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1242666310}
   - {fileID: 128434838}
+  - {fileID: 1555611036}
+  - {fileID: 2053270299}
   - {fileID: 1102317565}
   - {fileID: 955259287}
   - {fileID: 34992834}
-  - {fileID: 1555611036}
-  - {fileID: 2053270299}
