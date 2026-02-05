@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: -7325159235234909032}
   - component: {fileID: 1588708632282813870}
   - component: {fileID: 2540882430813531753}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Character_Goblin_Male 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
