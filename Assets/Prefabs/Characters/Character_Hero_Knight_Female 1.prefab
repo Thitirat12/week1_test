@@ -1342,6 +1342,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hero
   state: 0
   ringSelection: {fileID: 8289323561083087763}
+  curHP: 10
+  curCharTarget: {fileID: 0}
+  attackRange: 2
+  attackCooldown: 2
+  attackTimer: 0
 --- !u!114 &-2359771763410619026
 MonoBehaviour:
   m_ObjectHideFlags: 0
