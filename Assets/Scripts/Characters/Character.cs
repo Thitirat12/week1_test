@@ -257,19 +257,57 @@ public abstract class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //private IEnumerator ShootMagicCast(Magic curMagicCast)
+    //{
+    //    if (vfxManager != null)
+    //        vfxManager.ShootMagic(curMagicCast.ShootID,
+    //            transform.position, curCharTarget.transform.position,
+    //            curMagicCast.ShootTime);
+
+    //    yield return new WaitForSeconds(curMagicCast.ShootTime);
+
+    //    MagicCastLogic(curMagicCast);
+    //    isMagicMode = false;
+
+    //    SetState(CharState.Idle);
+    //    if (uiManager != null)
+    //        uiManager.IsOnCurToggleMagic(false);
+    //}
+
+    //private IEnumerator LoadMagicCast(Magic curMagicCast)
+    //{
+    //    if (vfxManager != null)
+    //        vfxManager.LoadMagic(curMagicCast.LoadID,
+    //            transform.position,
+    //            curMagicCast.LoadTime);
+
+    //    yield return new WaitForSeconds(curMagicCast.LoadTime);
+
+    //    StartCoroutine(ShootMagicCast(curMagicCast));
+    //}
+
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
-            vfxManager.ShootMagic(curMagicCast.ShootID,
-                transform.position, curCharTarget.transform.position,
-                curMagicCast.ShootTime);
+        {
+            Vector3 chestOffset = Vector3.up * 1.2f;
+
+            vfxManager.ShootMagic(
+                curMagicCast.ShootID,
+                transform.position + chestOffset,
+                curCharTarget.transform.position + chestOffset,
+                curMagicCast.ShootTime
+            );
+        }
 
         yield return new WaitForSeconds(curMagicCast.ShootTime);
 
         MagicCastLogic(curMagicCast);
+
         isMagicMode = false;
 
         SetState(CharState.Idle);
+
         if (uiManager != null)
             uiManager.IsOnCurToggleMagic(false);
     }
@@ -277,9 +315,15 @@ public abstract class Character : MonoBehaviour
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
-            vfxManager.LoadMagic(curMagicCast.LoadID,
-                transform.position,
-                curMagicCast.LoadTime);
+        {
+            Vector3 chestOffset = Vector3.up * 1.2f;
+
+            vfxManager.LoadMagic(
+                curMagicCast.LoadID,
+                transform.position + chestOffset,
+                curMagicCast.LoadTime
+            );
+        }
 
         yield return new WaitForSeconds(curMagicCast.LoadTime);
 

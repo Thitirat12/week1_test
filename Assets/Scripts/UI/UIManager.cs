@@ -61,19 +61,45 @@ public class UIManager : MonoBehaviour
         Time.timeScale = isOn ? 0 : 1;
     }
 
+    //public void ShowMagicToggles()
+    //{
+    //    if (PartyManager.instance.SelectChars.Count <= 0)
+    //        return;
+
+    //    //Show Magic skill only the single selected hero
+    //    Character hero = PartyManager.instance.SelectChars[0];
+
+    //    for (int i = 0; i < hero.MagicSkills.Count; i++)
+    //    {
+    //        toggleMagic[i].interactable = true;
+    //        toggleMagic[i].isOn = false;
+    //        toggleMagic[i].GetComponent<Text>().text = hero.MagicSkills[i].Name;
+    //    }
+    //}
+
     public void ShowMagicToggles()
     {
         if (PartyManager.instance.SelectChars.Count <= 0)
             return;
 
-        //Show Magic skill only the single selected hero
         Character hero = PartyManager.instance.SelectChars[0];
 
-        for (int i = 0; i < hero.MagicSkills.Count; i++)
+        for (int i = 0; i < toggleMagic.Length; i++)
         {
-            toggleMagic[i].interactable = true;
-            toggleMagic[i].isOn = false;
-            toggleMagic[i].GetComponent<Text>().text = hero.MagicSkills[i].Name;
+            if (i < hero.MagicSkills.Count)
+            {
+                toggleMagic[i].interactable = true;
+                toggleMagic[i].SetIsOnWithoutNotify(false);
+
+                Text txt = toggleMagic[i].GetComponentInChildren<Text>();
+                if (txt != null)
+                    txt.text = hero.MagicSkills[i].Name;
+            }
+            else
+            {
+                toggleMagic[i].interactable = false;
+                toggleMagic[i].SetIsOnWithoutNotify(false);
+            }
         }
     }
 
