@@ -61,21 +61,23 @@ public class UIManager : MonoBehaviour
         Time.timeScale = isOn ? 0 : 1;
     }
 
-    //public void ShowMagicToggles()
-    //{
-    //    if (PartyManager.instance.SelectChars.Count <= 0)
-    //        return;
+    /*    public void ShowMagicToggles()
+        {
+            if (PartyManager.instance.SelectChars.Count <= 0)
+                return;
 
-    //    //Show Magic skill only the single selected hero
-    //    Character hero = PartyManager.instance.SelectChars[0];
+            //Show Magic skill only the single selected hero
+            Character hero = PartyManager.instance.SelectChars[0];
 
-    //    for (int i = 0; i < hero.MagicSkills.Count; i++)
-    //    {
-    //        toggleMagic[i].interactable = true;
-    //        toggleMagic[i].isOn = false;
-    //        toggleMagic[i].GetComponent<Text>().text = hero.MagicSkills[i].Name;
-    //    }
-    //}
+            for (int i = 0; i < hero.MagicSkills.Count; i++)
+            {
+                toggleMagic[i].interactable = true;
+                toggleMagic[i].isOn = false;
+                toggleMagic[i].GetComponent<Text>().text = hero.MagicSkills[i].Name;
+            }
+        }*/
+
+    // Hot Fixed
 
     public void ShowMagicToggles()
     {

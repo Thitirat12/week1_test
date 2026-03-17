@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
+  m_Color: {r: 0.08962262, g: 1, b: 1, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2925,6 +2925,10 @@ MonoBehaviour:
   magicVFX:
   - {fileID: 1722081097931586, guid: 636c85791c4794d4fa591d5cb9006ce9, type: 3}
   - {fileID: 1236643204216662, guid: 80741d5c9659db74c8d655971fb119cb, type: 3}
+  - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
+  - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
+  - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
+  - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
   - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
   - {fileID: 1739096776086156, guid: cc7376a2be5e4f04ab90b35f3307d787, type: 3}
 --- !u!114 &528256256
@@ -9017,6 +9021,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404400, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 48147397875911423, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1547244501878938940, guid: 14fc050b80e43454db90e6ff18992b7c, type: 3}

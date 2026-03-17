@@ -257,35 +257,36 @@ public abstract class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //private IEnumerator ShootMagicCast(Magic curMagicCast)
-    //{
-    //    if (vfxManager != null)
-    //        vfxManager.ShootMagic(curMagicCast.ShootID,
-    //            transform.position, curCharTarget.transform.position,
-    //            curMagicCast.ShootTime);
+    /* private IEnumerator ShootMagicCast(Magic curMagicCast)
+    {
+        if (vfxManager != null)
+            vfxManager.ShootMagic(curMagicCast.ShootID,
+                transform.position, curCharTarget.transform.position,
+                curMagicCast.ShootTime);
 
-    //    yield return new WaitForSeconds(curMagicCast.ShootTime);
+        yield return new WaitForSeconds(curMagicCast.ShootTime);
 
-    //    MagicCastLogic(curMagicCast);
-    //    isMagicMode = false;
+        MagicCastLogic(curMagicCast);
+        isMagicMode = false;
 
-    //    SetState(CharState.Idle);
-    //    if (uiManager != null)
-    //        uiManager.IsOnCurToggleMagic(false);
-    //}
+        SetState(CharState.Idle);
+        if (uiManager != null)
+            uiManager.IsOnCurToggleMagic(false);
+    }*/
 
-    //private IEnumerator LoadMagicCast(Magic curMagicCast)
-    //{
-    //    if (vfxManager != null)
-    //        vfxManager.LoadMagic(curMagicCast.LoadID,
-    //            transform.position,
-    //            curMagicCast.LoadTime);
+    /*private IEnumerator LoadMagicCast(Magic curMagicCast)
+    {
+        if (vfxManager != null)
+            vfxManager.LoadMagic(curMagicCast.LoadID,
+                transform.position,
+                curMagicCast.LoadTime);
 
-    //    yield return new WaitForSeconds(curMagicCast.LoadTime);
+        yield return new WaitForSeconds(curMagicCast.LoadTime);
 
-    //    StartCoroutine(ShootMagicCast(curMagicCast));
-    //}
+        StartCoroutine(ShootMagicCast(curMagicCast));
+    }*/
 
+    // Hot Fixed
     private IEnumerator ShootMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
@@ -312,6 +313,7 @@ public abstract class Character : MonoBehaviour
             uiManager.IsOnCurToggleMagic(false);
     }
 
+    // Hot Fixed
     private IEnumerator LoadMagicCast(Magic curMagicCast)
     {
         if (vfxManager != null)
