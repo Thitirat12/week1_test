@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdd41747bf4430240a3bf1e5529e5048, type: 3}
-  m_Name: 001_SwordA
+  m_Name: 005_MaceA
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  id: 1
-  itemName: SwordA
+  id: 5
+  itemName: MaceA
   type: 2
-  icon: {fileID: 21300000, guid: db1a43f0266ba604c8b239ef1cd4f511, type: 3}
+  icon: {fileID: 21300000, guid: 97b2ffcf404b05944a519b54ee0cd745, type: 3}
   power: 20

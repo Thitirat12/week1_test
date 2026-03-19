@@ -3593,6 +3593,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e31359b598a7b564a9ab8e9ebb8663bc, type: 2}
   - {fileID: 11400000, guid: 35706fa4d1f91c647ae21d4179d7ef84, type: 2}
   - {fileID: 11400000, guid: 11ac11c04b2249141ba447d95e6b6f8f, type: 2}
+  - {fileID: 11400000, guid: e643b0cec382ec148a4765fc19f8d05d, type: 2}
+  - {fileID: 11400000, guid: a10aea4341b065b4098ec3dbe80ef869, type: 2}
+  - {fileID: 11400000, guid: a5eae77ac7befba4ab134b502c667392, type: 2}
+  - {fileID: 11400000, guid: 082833191d69b924cbdd10ed0a643330, type: 2}
+  - {fileID: 11400000, guid: d229d353463e12645b559cbda88e4fcb, type: 2}
+  - {fileID: 11400000, guid: 89d40149cd892e941b5a4be635e66d9c, type: 2}
+  - {fileID: 11400000, guid: 744598cc308bc974a81a51f57a16e5f0, type: 2}
+  - {fileID: 11400000, guid: 98eeb05ae94a4c5459203a836f937e6f, type: 2}
 --- !u!1 &532991499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2671763744096929733, guid: 189dee60fa4f2c445aa0d35c12051eea, type: 3}

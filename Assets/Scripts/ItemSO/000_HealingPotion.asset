@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 0
   itemName: Healing Potion
   type: 0
-  icon: {fileID: 21300000, guid: f4801acc5924cea4290c9c42a8b744fe, type: 3}
+  icon: {fileID: 21300000, guid: c02220eac17536246ae8166239a741b5, type: 3}
   power: 15

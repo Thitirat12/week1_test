@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 3
   itemName: ShieldA
   type: 1
-  icon: {fileID: 21300000, guid: fc7467173258ef3428a0232cdb225f73, type: 3}
+  icon: {fileID: 21300000, guid: 731edfd942fcf2947918c90a89a17eaa, type: 3}
   power: 0
