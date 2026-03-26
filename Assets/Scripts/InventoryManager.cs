@@ -70,11 +70,21 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
 
-        GameObject itemObj = Instantiate(ItemPrefabs[id], pos , Quaternion.identity);
+        GameObject itemObj = Instantiate(ItemPrefabs[id], pos, Quaternion.identity);
         itemObj.AddComponent<ItemPick>();
 
+        MeshCollider meshCol = itemObj.GetComponent<MeshCollider>();
+        if (meshCol != null)
+        {
+            Bounds bounds = meshCol.bounds;
+            float bottomY = bounds.min.y;
+
+            Vector3 adjust = new Vector3(0, pos.y - bottomY, 0);
+            itemObj.transform.position += adjust;
+        }
+
         ItemPick itemPick = itemObj.GetComponent<ItemPick>();
-        itemPick.Init(item,instance,PartyManager.instance);
+        itemPick.Init(item, instance, PartyManager.instance);
     }
 
     public void SpawnDropInventory(Item[] items, Vector3 pos)
