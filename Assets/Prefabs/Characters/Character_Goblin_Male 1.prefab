@@ -997,6 +997,9 @@ MonoBehaviour:
   shieldHand: {fileID: 466868}
   shieldObj: {fileID: 0}
   defensePower: 0
+  weaponHand: {fileID: 488436}
+  weaponObj: {fileID: 0}
+  weaponPower: 0
 --- !u!114 &-7325159235234909032
 MonoBehaviour:
   m_ObjectHideFlags: 0

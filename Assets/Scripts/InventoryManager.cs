@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
     public ItemData[] ItemData
     {  get { return itemData; } set { itemData = value; } }
 
-    public const int MAXSLOT = 17;
+    public const int MAXSLOT = 18;
 
     public static InventoryManager instance;
 
@@ -52,6 +52,9 @@ public class InventoryManager : MonoBehaviour
             case 16:
                 PartyManager.instance.SelectChars[0].EquipShield(item); 
                 break;
+            case 17:
+                PartyManager.instance.SelectChars[0].EquipWeapon(item); 
+                break;
         }
     }
 
@@ -66,6 +69,9 @@ public class InventoryManager : MonoBehaviour
         {
             case 16:
                 PartyManager.instance.SelectChars[0].UnEquipShield();
+                break;
+            case 17:
+                PartyManager.instance.SelectChars[0].UnEquipWeapon();
                 break;
         }
     }

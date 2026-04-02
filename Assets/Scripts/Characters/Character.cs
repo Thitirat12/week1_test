@@ -92,6 +92,15 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int defensePower = 0;
 
+    [SerializeField]
+    protected Transform weaponHand;
+
+    [SerializeField]
+    protected GameObject weaponObj;
+
+    [SerializeField]
+    protected int weaponPower = 0;
+
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
@@ -414,6 +423,27 @@ public abstract class Character : MonoBehaviour
             defensePower -= shield.Power;
             shield = null;
             Destroy(shieldObj);
+        }
+    }
+
+    public void EquipWeapon(Item item)
+    {
+        weaponObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], weaponHand);
+
+        weaponObj.transform.localPosition = new Vector3(7.5f, 2f, 8f);
+        weaponObj.transform.Rotate(0f, 90f, -90f, Space.Self);
+
+        weaponPower += item.Power;
+        mainWeapon = item;
+    }
+
+    public void UnEquipWeapon()
+    {
+        if (mainWeapon != null)
+        {
+            weaponPower -= mainWeapon.Power;
+            mainWeapon = null;
+            Destroy(weaponObj);
         }
     }
 }

@@ -31,13 +31,13 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members[0], 0); //Potion
         InventoryManager.instance.AddItem(members[0], 1); //Sword
         InventoryManager.instance.AddItem(members[0], 2); //ShieldA
-        InventoryManager.instance.AddItem(members[0], 6); //Mace
-        InventoryManager.instance.AddItem(members[0], 9); //Dagger
+        InventoryManager.instance.AddItem(members[0], 3); //Axe
+        InventoryManager.instance.AddItem(members[0], 4); //Spear
 
         InventoryManager.instance.AddItem(members[1], 10); //Pie
         InventoryManager.instance.AddItem(members[1], 4); //Spear
-        InventoryManager.instance.AddItem(members[1], 6); //Scaptre
-        InventoryManager.instance.AddItem(members[1], 8); //Elephant gun
+        InventoryManager.instance.AddItem(members[1], 1); //Sword
+        InventoryManager.instance.AddItem(members[1], 3); //Axe
         InventoryManager.instance.AddItem(members[1], 11); //ShieldB
 
         UIManager.instance.ShowMagicToggles();
