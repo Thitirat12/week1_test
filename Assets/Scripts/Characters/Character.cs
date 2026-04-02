@@ -79,6 +79,19 @@ public abstract class Character : MonoBehaviour
     protected Item shield;
     public Item Shield { get { return shield; } set { shield = value; } }
 
+    [SerializeField]
+    protected int maxHP = 100;
+    public int MaxHP { get { return maxHP; } }
+
+    [SerializeField]
+    protected Transform shieldHand;
+
+    [SerializeField]
+    protected GameObject shieldObj;
+
+    [SerializeField]
+    protected int defensePower = 0;
+
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
@@ -247,7 +260,14 @@ public abstract class Character : MonoBehaviour
     {
         if (curHP <= 0 || state == CharState.Die)
             return;
-        curHP -= damage;
+
+        int damageAfter = damage - defensePower;
+        if (damageAfter < 0)
+        {
+            damageAfter = 0;
+        }
+
+        curHP -= damageAfter;
 
         if (curHP <= 0)
         {
@@ -367,5 +387,33 @@ public abstract class Character : MonoBehaviour
 
         inventoryItems = new Item[InventoryManager.MAXSLOT];
     }
-  
+
+    public void Recovery (int n)
+    {
+        curHP += n;
+
+        if(curHP > maxHP)
+            curHP = maxHP;
+    }
+
+    public void EquipShield(Item item)
+    {
+        shieldObj = Instantiate(invManager.ItemPrefabs[item.PrefabID], shieldHand);
+
+        shieldObj.transform.localPosition = new Vector3(-8.5f, -4f, 3f);
+        shieldObj.transform.Rotate(-90f, 0f, 180f, Space.Self);
+
+        defensePower += item.Power;
+        shield = item;
+    }
+
+    public void UnEquipShield()
+    {
+        if (shield != null)
+        {
+            defensePower -= shield.Power;
+            shield = null;
+            Destroy(shieldObj);
+        }
+    }
 }

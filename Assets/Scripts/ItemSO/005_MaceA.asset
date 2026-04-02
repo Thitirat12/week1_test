@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   id: 5
   itemName: MaceA
-  type: 2
+  type: 4
   icon: {fileID: 21300000, guid: 97b2ffcf404b05944a519b54ee0cd745, type: 3}
   power: 20
+  prefabID: 0
