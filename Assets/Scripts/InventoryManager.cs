@@ -166,7 +166,7 @@ public class InventoryManager : MonoBehaviour
         {
             for (int i = 0; i < hero.InventoryItems.Length; i++)
             {
-                if (hero.InventoryItems[i] != null)
+                if (hero.InventoryItems[i] == null)
                     continue;
                 Debug.Log(hero.InventoryItems[i].ItemName);
 

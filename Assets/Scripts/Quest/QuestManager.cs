@@ -59,7 +59,7 @@ public class QuestManager : MonoBehaviour
         switch (curQuest.Type)
         {
             case QuestType.Delivery:
-                success = CheckIfFinishQuest(); break;
+                success = CheckItemToDelivery(); break;
         }
         return success;
     }
