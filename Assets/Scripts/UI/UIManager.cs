@@ -91,6 +91,21 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text btnNotFinishText;
 
+    [SerializeField]
+    private GameObject btnExit;
+
+    [SerializeField]
+    private GameObject RewardPanel;
+
+    [SerializeField]
+    private Image ItemImage;
+
+    [SerializeField]
+    private TMP_Text ItemNameText;
+
+    [SerializeField]
+    private GameObject btnItemAccept;
+
     public static UIManager instance;
 
     private void Awake()
@@ -424,4 +439,22 @@ public class UIManager : MonoBehaviour
         Debug.Log("Cannot Finish Quest");
         ToggleDialogueBox(false);
     }
+
+    public void ClosePanelButton() //map with ExitButton
+    {
+        npcDialoguePanel.SetActive(false);
+    }
+
+    public void ItemRewardPanel(string itemName, Sprite icon)
+    {
+        ItemImage.sprite = icon;
+        ItemNameText.text = itemName;
+        RewardPanel.SetActive(true);
+    }
+
+    public void itemAcceptButton() //map with itemAcceptBtn
+    {
+        RewardPanel.SetActive(false);
+    }
+
 }

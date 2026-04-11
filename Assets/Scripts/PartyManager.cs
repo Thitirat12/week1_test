@@ -43,7 +43,7 @@ public class PartyManager : MonoBehaviour
         InventoryManager.instance.AddItem(members[1], 1); //Sword
         InventoryManager.instance.AddItem(members[1], 3); //Axe
         InventoryManager.instance.AddItem(members[1], 11); //ShieldB
-        InventoryManager.instance.AddItem(members[1], 12); //Mana potion
+        //InventoryManager.instance.AddItem(members[1], 12); //Mana potion
 
         UIManager.instance.ShowMagicToggles();
     }

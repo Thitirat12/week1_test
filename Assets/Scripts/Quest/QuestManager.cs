@@ -100,7 +100,7 @@ public class QuestManager : MonoBehaviour
     {
         if (PartyManager.instance.SelectChars.Count == 0)
             return false;
-
+            
         Character hero = PartyManager.instance.SelectChars[0];
 
         Item item = new Item(InventoryManager.instance.ItemData[CurQuest.RewardItemId]);
@@ -111,6 +111,9 @@ public class QuestManager : MonoBehaviour
             {
                 hero.InventoryItems[i] = item;
                 curQuest.Status = QuestStatus.Finish;
+
+                UIManager.instance.ItemRewardPanel(item.ItemName, item.Icon);
+
                 return true;
             }          
         }
