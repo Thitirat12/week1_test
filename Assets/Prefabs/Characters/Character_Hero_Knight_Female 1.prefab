@@ -1341,6 +1341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efdad00f400a674ea83a33ecedf81b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
+  avatarPic: {fileID: 21300000, guid: a18801cd3ae3ff646b57b176a1d6b631, type: 3}
+  charName: Demand
   state: 0
   ringSelection: {fileID: 8289323561083087763}
   curHP: 10
@@ -1384,6 +1386,14 @@ MonoBehaviour:
   weaponHand: {fileID: 475994}
   weaponObj: {fileID: 0}
   weaponPower: 0
+  exp: 0
+  level: 0
+  strength: 0
+  dexterity: 0
+  constitution: 0
+  intelligence: 0
+  wisdom: 0
+  charisma: 0
 --- !u!114 &-2359771763410619026
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LeftClick : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class LeftClick : MonoBehaviour
 
         boxSelection = UIManager.instance.SelectionBox;
     }
-
     private void Update()
     {
+        //mouse down
         if (Input.GetMouseButtonDown(0))
         {
             startPos = Input.mousePosition;
@@ -38,13 +39,13 @@ public class LeftClick : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            clearEverything();
+            ClearEverything();
         }
 
         if (Input.GetMouseButton(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
+            //if (EventSystem.current.IsPointerOverGameObject())
+            //    return;
 
             UpdateSelectionBox(Input.mousePosition);
         }
@@ -56,14 +57,21 @@ public class LeftClick : MonoBehaviour
         }
     }
 
-    private void SelectCharacter(RaycastHit hit)
+    private int SelectCharacter(RaycastHit hit)
     {
-        Character hero = hit.collider.GetComponent<Character>();
-        Debug.Log("Select Char: " + hit.collider.gameObject);
+        ClearEverything();
 
-        PartyManager.instance.SelectChars.Add(hero);
-        hero.ToggleRingSelection(true);
-        UIManager.instance.ShowMagicToggles();
+        Character hero = hit.collider.GetComponent<Character>();
+        //Debug.Log("Select Char: " + hit.collider.gameObject);
+
+        int i = PartyManager.instance.FindIndexFromClass(hero);
+
+        UIManager.instance.ToggleAvatar[i].isOn = true;
+        return i;
+
+        //PartyManager.instance.SelectChars.Add(hero);
+        //hero.ToggleRingSelection(true);
+        //UIManager.instance.ShowMagicToggles();
     }
 
     private void TrySelect(Vector2 screenPos)
@@ -71,25 +79,34 @@ public class LeftClick : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(screenPos);
         RaycastHit hit;
 
+        int i = 0;
+
         if (Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             switch (hit.collider.tag)
             {
                 case "Player":
                 case "Hero":
-                    SelectCharacter(hit);
+                    i = SelectCharacter(hit);
                     break;
             }
-
         }
+
+        if (PartyManager.instance.SelectChars.Count == 0)
+            UIManager.instance.ToggleAvatar[i].isOn = true;
     }
+
     private void ClearRingSelection()
     {
         foreach (Character h in PartyManager.instance.SelectChars)
             h.ToggleRingSelection(false);
     }
-    private void clearEverything()
+
+    private void ClearEverything()
     {
+        foreach (Toggle t in UIManager.instance.ToggleAvatar)
+            t.isOn = false;
+
         ClearRingSelection();
         PartyManager.instance.SelectChars.Clear();
     }
@@ -129,10 +146,13 @@ public class LeftClick : MonoBehaviour
             if ((unitPos.x > corner1.x && unitPos.x < corner2.x)
                 && (unitPos.y > corner1.y && unitPos.y < corner2.y))
             {
-                PartyManager.instance.SelectChars.Add(member);
-                member.ToggleRingSelection(true);
+                int i = PartyManager.instance.FindIndexFromClass(member);
+                //PartyManager.instance.SelectChars.Add(member);
+                //member.ToggleRingSelection(true);
+                UIManager.instance.ToggleAvatar[i].isOn = true;
             }
             boxSelection.sizeDelta = new Vector2(0, 0);
         }
     }
+
 }

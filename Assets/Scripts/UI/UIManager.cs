@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -106,6 +107,40 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject btnItemAccept;
 
+    [SerializeField]
+    private Toggle[] toggleAvatar;
+    public Toggle[] ToggleAvatar { get { return toggleAvatar; } set { toggleAvatar = value; } }
+
+    [SerializeField]
+    private GameObject charPanel;
+
+    [SerializeField]
+    private TMP_Text charNameText;
+
+    [SerializeField]
+    private TMP_Text statText;
+
+    [SerializeField]
+    private TMP_Text abilityText;
+
+    [SerializeField]
+    private Image heroImage;
+
+    [SerializeField]
+    private GameObject partyPanel;
+
+    [SerializeField]
+    private Toggle[] toggleRemove;
+
+    [SerializeField]
+    private int idToRemove = -1;
+
+    [SerializeField]
+    private Button removeButton;
+
+    [SerializeField]
+    private GameObject confirmPanel;
+
     public static UIManager instance;
 
     private void Awake()
@@ -116,6 +151,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         InitSlots();
+        MapToggleAvatar();
     }
 
     private void Update()
@@ -457,4 +493,214 @@ public class UIManager : MonoBehaviour
         RewardPanel.SetActive(false);
     }
 
+    public void MapToggleAvatar()
+    {
+        foreach (Toggle t in toggleAvatar)
+            t.gameObject.SetActive(false);
+
+        List<Character> members = PartyManager.instance.Members;
+
+        for (int i =0; 1 < PartyManager.instance.Members.Count; i++)
+        {
+            toggleAvatar[i].gameObject.SetActive(true);
+            toggleAvatar[i].transform.Find("Background")
+                        .GetComponent<Image>().sprite = members[i].AvatarPic;
+        }
+        toggleAvatar[0].isOn = true; //select first hero
+    }
+
+    public void SelectHeroByAvatar(int i) //map with toggle
+    {
+        Debug.Log($"SelectHeroByAvatar called: i = {i}, isOn = {toggleAvatar[i].isOn}");
+
+        if (toggleAvatar[i].isOn)
+        {
+            Debug.Log($"is on : {i}");
+            PartyManager.instance.SelectSingleHeroByToggle(i);
+
+            //Wave
+            if (charPanel.activeInHierarchy)
+            {
+                PartyManager.instance.SelectChars.Clear();
+                PartyManager.instance.SelectChars.Add(PartyManager.instance.Members[i]);
+                ShowCharPanel();
+            }
+        }
+        else //isOn is false
+        {
+            Debug.Log($"is off : {i}");
+            PartyManager.instance.UnSelectSingleHeroByToggle(i);
+        }
+    }
+
+    public void ClearCharPanel()
+    {
+        charNameText.text = "";
+        statText.text = "";
+        abilityText.text = "";
+        heroImage.sprite = null;
+    }
+
+    /*public void ShowCharPanel(Hero hero)
+    {
+        if (hero == null) return;
+
+        //if (PartyManager.instance.SelectChars.Count == 0)
+            //return;
+        //Hero hero = (Hero)PartyManager.instance.SelectChars[0];
+
+        charNameText.text = hero.CharName;
+
+        string stat = string.Format
+            ("Level: {0}\nExperience: {1}\n" +
+            "Attack Damage: {2}\nDefense Power: {3}"
+            , hero.Level, hero.Exp, hero.AttackDamage, hero.DefensePower);
+
+        statText.text = stat;
+
+        string ability = string.Format
+            ("Strength: {0}\nDexterity: {1}\n" +
+            "Constitution: {2}\nIntelligence: {3}\n" +
+            "Windom: {4}\nCharisma: {5}",
+            hero.Strength, hero.Dexterity, hero.Constitution,
+            hero.Intelligence, hero.Wisdom, hero.Charisma);
+
+        abilityText.text = ability;
+
+        heroImage.sprite = hero.AvatarPic;
+    }*/
+
+    public void ShowCharPanel()
+    {
+        if (PartyManager.instance.SelectChars.Count == 0)
+            return;
+
+        Hero hero = (Hero)PartyManager.instance.SelectChars[0];
+
+        charNameText.text = hero.CharName;
+
+        string stat = string.Format
+            ("Level: {0}\nExperience: {1}\n" +
+            "Attack Damage: {2}\nDefense Power: {3}"
+            , hero.Level, hero.Exp, hero.AttackDamage, hero.DefensePower);
+
+        statText.text = stat;
+
+        string ability = string.Format
+            ("Strength: {0}\nDexterity: {1}\n" +
+            "Constitution: {2}\nIntelligence: {3}\n" +
+            "Windom: {4}\nCharisma: {5}",
+            hero.Strength, hero.Dexterity, hero.Constitution,
+            hero.Intelligence, hero.Wisdom, hero.Charisma);
+
+        abilityText.text = ability;
+
+        heroImage.sprite = hero.AvatarPic;
+    }
+
+    public void ToggleCharPanel()
+    {
+        if (!charPanel.activeInHierarchy)
+        {
+            charPanel.SetActive(true);
+            blackImage.SetActive(true);
+            //OnAvatarToggleChanged();
+            ShowCharPanel();
+        }
+        else
+        {
+            charPanel.SetActive(false);
+            blackImage.SetActive(false);
+            ClearCharPanel();
+        }
+    }
+
+    /*public void OnAvatarToggleChanged()
+    {
+        if (!charPanel.activeInHierarchy) return;
+
+        var chars = PartyManager.instance.SelectChars;
+        for (int i = 0; i < toggleAvatar.Length; i++)
+        {
+            if (toggleAvatar[i] != null && toggleAvatar[i].isOn && i < chars.Count)
+            {
+                ShowCharPanel((Hero)chars[i]);
+                return;
+            }
+        }
+    } */
+
+    public void MapToggleRemove()
+    {
+        foreach (Toggle t in toggleRemove)
+            t.gameObject.SetActive(false);
+
+        List<Character> members = PartyManager.instance.Members;
+
+        for (int i = 1; i < members.Count; i++)
+        {
+            toggleRemove[i - 1].gameObject.SetActive(true);
+            toggleRemove[i - 1].targetGraphic.GetComponent<Image>().sprite
+                = members[i].AvatarPic;
+        }
+    }
+
+    private void CheckRemoveButton()
+    {
+        switch (idToRemove)
+        {
+            case -1:
+            case 0:
+                removeButton.interactable = false;
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                removeButton.interactable = true; 
+                break;
+            default:
+                removeButton.interactable = false;
+                break;
+        }
+    }
+
+    public void TogglePartyPanel(bool flag)
+    {
+        charPanel.SetActive(!flag);
+        partyPanel.SetActive(flag);
+        MapToggleRemove();
+        CheckRemoveButton();
+    }
+
+    public void SelectToRemove(int i)
+    {
+        if (toggleRemove[i-  1].isOn)
+            idToRemove = i;
+        else
+            idToRemove = -1;
+
+        CheckRemoveButton();
+    }
+
+    public void ToggleConfirmPanel(bool flag)
+    {
+        if (flag == false)
+        {
+            MapToggleRemove();
+            idToRemove = -1;
+            CheckRemoveButton();
+        }
+        partyPanel.SetActive(!flag);
+        confirmPanel.SetActive(flag);
+    }
+
+    public void RemoveMemberFromParty()
+    {
+        toggleAvatar[idToRemove].isOn = false;
+        PartyManager.instance.RemoveHeroFromParty(idToRemove);
+        MapToggleAvatar();
+        ToggleConfirmPanel(false);
+    }
 }
