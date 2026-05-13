@@ -59,6 +59,7 @@ public class LeftClick : MonoBehaviour
 
     private int SelectCharacter(RaycastHit hit)
     {
+
         ClearEverything();
 
         Character hero = hit.collider.GetComponent<Character>();
@@ -146,6 +147,7 @@ public class LeftClick : MonoBehaviour
             if ((unitPos.x > corner1.x && unitPos.x < corner2.x)
                 && (unitPos.y > corner1.y && unitPos.y < corner2.y))
             {
+                Debug.Log($"Found in box: {member.name}");
                 int i = PartyManager.instance.FindIndexFromClass(member);
                 //PartyManager.instance.SelectChars.Add(member);
                 //member.ToggleRingSelection(true);

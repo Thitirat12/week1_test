@@ -15,6 +15,10 @@ public class PartyManager : MonoBehaviour
     private List<Quest> questList = new List<Quest>();
     public List<Quest> QuestList { get { return questList; } }
 
+    [SerializeField]
+    private int partyMoney = 1000;
+    public int PartyMoney { get { return partyMoney; }set { partyMoney = value; } }
+
     public static PartyManager instance;
 
     private void Awake()
@@ -83,10 +87,12 @@ public class PartyManager : MonoBehaviour
     {
         for (int i = 0; i < members.Count; i++)
         {
-            return i;
+            if (members[i] == hero) //Wave
+                return i;
         }
         return 0;
     }
+
     public void SelectSingleHeroByToggle(int i)
     {
         //Debug.Log($"Select {i}");
