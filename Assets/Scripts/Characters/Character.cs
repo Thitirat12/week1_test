@@ -41,7 +41,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int curHP = 10;
-    public int CurHP { get { return curHP; } }
+    public int CurHP { get { return curHP; } set { curHP = value; } }
 
     [SerializeField]
     protected Character curCharTarget;
@@ -52,7 +52,7 @@ public abstract class Character : MonoBehaviour
     public float AttackRange { get { return attackRange; } }
     [SerializeField]
     protected int attackDamage = 3;
-    public int AttackDamage { get { return attackDamage; } }
+    public int AttackDamage { get { return attackDamage; } set { attackDamage = value; } }
     [SerializeField]
     protected float attackCooldown = 2f;
     [SerializeField]
@@ -101,7 +101,7 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected int defensePower = 0;
-    public int DefensePower { get { return defensePower; } }
+    public int DefensePower { get { return defensePower; } set { defensePower = value; } }
 
     [SerializeField]
     protected Transform weaponHand;
@@ -112,41 +112,10 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int weaponPower = 0;
 
-    [SerializeField]
-    private int exp;
-    public int Exp { get { return exp; } set { exp = value; } }
-
-    [SerializeField]
-    private int level;
-    public int Level { get { return level; } set { level = value; } }
-
-    [SerializeField]
-    private int strength;
-    public int Strength { get { return strength; } set { strength = value; } }
-
-    [SerializeField]
-    private int dexterity;
-    public int Dexterity { get { return dexterity; } set { dexterity = value; } }
-
-    [SerializeField]
-    private int constitution;
-    public int Constitution { get { return constitution; } set { constitution = value; } }
-
-    [SerializeField]
-    private int intelligence;
-    public int Intelligence { get { return intelligence; } set { intelligence = value; } }
-
-    [SerializeField]
-    private int wisdom;
-    public int Wisdom {get { return wisdom; } set { wisdom = value; } }
-
-    [SerializeField]
-    private int charisma;
-    public int Charisma { get { return charisma; }set { charisma = value; } }
-
     protected VFXManager vfxManager;
     protected UIManager uiManager;
     protected InventoryManager invManager;
+    protected PartyManager partyManager;
 
     private void Awake()
     {
@@ -447,11 +416,12 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(DestroyObject());
     }
 
-    public void charInit(VFXManager vfxM,UIManager uiM,InventoryManager invM)
+    public void CharInit(VFXManager vfxM,UIManager uiM,InventoryManager invM,PartyManager partyM)
     {
         vfxManager = vfxM;
         uiManager = uiM;
         invManager = invM;
+        partyManager = partyM;
 
         inventoryItems = new Item[InventoryManager.MAXSLOT];
     }

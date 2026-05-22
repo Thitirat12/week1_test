@@ -957,6 +957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7cbac88a629b240b1e8d1ce4a44b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  avatarPic: {fileID: 0}
+  charName: 
   state: 0
   ringSelection: {fileID: 0}
   curHP: 10
@@ -986,6 +988,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   shield:
     id: 0
     itemName: 
@@ -993,6 +996,7 @@ MonoBehaviour:
     icon: {fileID: 0}
     power: 0
     prefabID: 0
+    normalPrice: 0
   maxHP: 100
   shieldHand: {fileID: 466868}
   shieldObj: {fileID: 0}
@@ -1000,6 +1004,15 @@ MonoBehaviour:
   weaponHand: {fileID: 488436}
   weaponObj: {fileID: 0}
   weaponPower: 0
+  exp: 0
+  level: 0
+  strength: 0
+  dexterity: 0
+  constitution: 0
+  intelligence: 0
+  wisdom: 0
+  charisma: 0
+  expDrop: 30
 --- !u!114 &-7325159235234909032
 MonoBehaviour:
   m_ObjectHideFlags: 0

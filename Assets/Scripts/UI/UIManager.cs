@@ -184,7 +184,16 @@ public class UIManager : MonoBehaviour
     private Hero curShopHero = null;
 
     [SerializeField]
+    private Hero curHeroToJoin = null;
+
+    [SerializeField]
     private TMP_Text heroNameText;
+
+    [SerializeField]
+    private GameObject btnJoinParty;
+
+    [SerializeField]
+    private GameObject btnNotJoinParty;
 
     public static UIManager instance;
 
@@ -232,6 +241,8 @@ public class UIManager : MonoBehaviour
 
     public void PauseUnpause(bool isOn)
     {
+        Debug.Log($"PauseUnpause called: isOn = {isOn}, timeScale = {Time.timeScale}");
+
         Time.timeScale = isOn ? 0 : 1;
     }
 
@@ -399,7 +410,10 @@ public class UIManager : MonoBehaviour
 
         btnNotFinishText.text = "";
         btnNotFinish.SetActive(false);
-    }
+
+        btnJoinParty.SetActive(false);
+        btnNotJoinParty.SetActive(false);
+    } //Clear All Dialogue Box
 
     private void StartQuestDialogue(Quest quest)
     {
@@ -457,6 +471,7 @@ public class UIManager : MonoBehaviour
         downPanel.SetActive(!flag);
         npcDialoguePanel.SetActive(flag);
         togglePauseUnpause.isOn = flag;
+        PauseUnpause(flag);
     }
 
     public void PrepareDialogueBox(NPC npc)
@@ -523,7 +538,7 @@ public class UIManager : MonoBehaviour
 
     public void ClosePanelButton() //map with ExitButton
     {
-        npcDialoguePanel.SetActive(false);
+        ToggleDialogueBox(false);
     }
 
     public void ItemRewardPanel(string itemName, Sprite icon)
@@ -901,4 +916,40 @@ public class UIManager : MonoBehaviour
             heroMoneyText.text = PartyManager.instance.PartyMoney.ToString();
         }
     }
+
+    private void SetupHeroJoinPartyPanel(Hero hero)
+    {
+        curHeroToJoin = hero;
+
+        npcImage.sprite = hero.AvatarPic;
+        npcNameText.text = hero.CharName;
+
+        dialogueText.text = "I want to join your party.";
+
+        btnJoinParty.SetActive(true);
+        btnNotJoinParty.SetActive(true);   
+    }
+
+    public void PrepareHeroJoinParty(Hero hero)
+    {
+        ClearDialogueBox();
+        SetupHeroJoinPartyPanel(hero);
+        ToggleDialogueBox(true);
+    }
+
+    public void AnswerJoinParty() //map with ButtonJoinParty
+    {
+        PartyManager.instance.HeroJoinParty(curHeroToJoin);
+        MapToggleAvatar();
+        curHeroToJoin = null;
+        ToggleDialogueBox(false);
+    }
+
+    public void AnswerNotJoinParty() // map with buttonNotJoinParty
+    {
+        curHeroToJoin = null;
+        ToggleDialogueBox(false);
+    }
+
+
 }
