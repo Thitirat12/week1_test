@@ -192,10 +192,13 @@ public class PartyManager : MonoBehaviour
             heroData[i].prefabId = hero.PrefabID;
             heroData[i].curHp = hero.CurHP;
 
+            heroData[i].magicIds.Clear();
             for (int j = 0; j < hero.MagicSkills.Count; j++)
             {
-                heroData[i].magicIds[j] = hero.MagicSkills[j].ID;
+                heroData[i].magicIds.Add(hero.MagicSkills[j].ID);
             }
+
+
             for (int k = 0; k < hero.InventoryItems.Length; k++)
             {
                 if (hero.InventoryItems[k] == null)

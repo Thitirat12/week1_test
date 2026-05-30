@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour
             case "SampleScene":
                 AudioManager.instance.PlayBGM(1);
                 break;
-            case "Forest01":
+            case "Forest02":
                 AudioManager.instance.PlayBGM(3);
                 break;
         }

@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
         hero.CharInit(VFXManager.Instance, UIManager.instance,
             InventoryManager.instance, PartyManager.instance);
 
-        InventoryManager.instance.AddItem(hero, 0);
-        InventoryManager.instance.AddItem(hero, 2);
+        //InventoryManager.instance.AddItem(hero, 0);
+        //InventoryManager.instance.AddItem(hero, 2);
     }
 
     private void WarpPlayer()
