@@ -75,7 +75,7 @@ public class Hero : Character
 
             NPC npc = curCharTarget.GetComponent<NPC>();
 
-            if(npc != null)
+            if (npc != null)
             {
                 if (npc.IsShopKeeper)
                     uiManager.PrepareShopPanel(npc, this);
@@ -85,7 +85,17 @@ public class Hero : Character
             else
             {
                 Hero hero = curCharTarget.GetComponent<Hero>();
-                uiManager.PrepareHeroJoinParty(hero);
+
+                if (hero != null)
+                {
+                    if (Setting.recruitedHeroPrefabIds.Contains(hero.PrefabID))
+                    {
+                        Debug.Log($"{hero.name} already recruited.");
+                        return;
+                    }
+
+                    uiManager.PrepareHeroJoinParty(hero);
+                }
             }
         }
     }

@@ -33,6 +33,7 @@ public class QuestManager : MonoBehaviour
         }
 
         AddQuestToNPC(npcPerson[0],questData[0]); //Give Golem - Give Potion Quest
+        AddQuestToNPC(npcPerson[2],questData[1]); //Give Oliver - Give Sword Quest
     }
 
     private void AddQuestToNPC(NPC npc, QuestData questData)

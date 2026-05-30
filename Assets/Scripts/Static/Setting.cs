@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class Setting
@@ -8,4 +9,6 @@ public static class Setting
 
     public static int enterPointId;
     public static int partyCount;
+
+    public static HashSet<int> recruitedHeroPrefabIds = new HashSet<int>();
 }

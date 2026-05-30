@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour
     private GameObject inventoryPanel;
 
     [SerializeField]
+    private GameObject InventoryBackground;
+
+    [SerializeField]
     private GameObject itemUIPrefab;
 
     [SerializeField]
@@ -306,14 +309,18 @@ public class UIManager : MonoBehaviour
     {
         if (!inventoryPanel.activeInHierarchy)
         {
+            CloseAllPanels();
+
             inventoryPanel.SetActive(true);
             blackImage.SetActive(true);
+            InventoryBackground.SetActive(true);
             ShowInventory();
         }
         else
         {
             inventoryPanel.SetActive(false);
             blackImage.SetActive(false);
+            InventoryBackground.SetActive(false);
             ClearInventory();
         }
     }
@@ -468,10 +475,16 @@ public class UIManager : MonoBehaviour
 
     private void ToggleDialogueBox(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         downPanel.SetActive(!flag);
         npcDialoguePanel.SetActive(flag);
         togglePauseUnpause.isOn = flag;
         PauseUnpause(flag);
+
     }
 
     public void PrepareDialogueBox(NPC npc)
@@ -578,11 +591,8 @@ public class UIManager : MonoBehaviour
             Debug.Log($"is on : {i}");
             PartyManager.instance.SelectSingleHeroByToggle(i);
 
-            //Wave
             if (charPanel.activeInHierarchy)
             {
-                PartyManager.instance.SelectChars.Clear();
-                PartyManager.instance.SelectChars.Add(PartyManager.instance.Members[i]);
                 ShowCharPanel();
             }
         }
@@ -662,9 +672,10 @@ public class UIManager : MonoBehaviour
     {
         if (!charPanel.activeInHierarchy)
         {
+            CloseAllPanels();
+
             charPanel.SetActive(true);
             blackImage.SetActive(true);
-            //OnAvatarToggleChanged();
             ShowCharPanel();
         }
         else
@@ -728,8 +739,15 @@ public class UIManager : MonoBehaviour
 
     public void TogglePartyPanel(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         charPanel.SetActive(!flag);
         partyPanel.SetActive(flag);
+        blackImage.SetActive(true);
+
         MapToggleRemove();
         CheckRemoveButton();
     }
@@ -824,7 +842,13 @@ public class UIManager : MonoBehaviour
 
     public void ToggleShopPanel(bool flag)
     {
+        if (flag)
+        {
+            CloseAllPanels();
+        }
+
         shopPanel.SetActive(flag);
+        blackImage.SetActive(flag);
     }
 
     public void PrepareShopPanel(NPC npc, Hero hero)
@@ -939,8 +963,16 @@ public class UIManager : MonoBehaviour
 
     public void AnswerJoinParty() //map with ButtonJoinParty
     {
-        PartyManager.instance.HeroJoinParty(curHeroToJoin);
-        MapToggleAvatar();
+        if (curHeroToJoin == null)
+            return;
+
+        bool success = PartyManager.instance.HeroJoinParty(curHeroToJoin);
+
+        if (success)
+        {
+            MapToggleAvatar();
+        }
+
         curHeroToJoin = null;
         ToggleDialogueBox(false);
     }
@@ -949,6 +981,25 @@ public class UIManager : MonoBehaviour
     {
         curHeroToJoin = null;
         ToggleDialogueBox(false);
+    }
+
+    private void CloseAllPanels()
+    {
+        inventoryPanel.SetActive(false);
+        itemDialog.SetActive(false);
+        npcDialoguePanel.SetActive(false);
+        RewardPanel.SetActive(false);
+        charPanel.SetActive(false);
+        partyPanel.SetActive(false);
+        confirmPanel.SetActive(false);
+        shopPanel.SetActive(false);
+
+        blackImage.SetActive(false);
+        grayImage.SetActive(false);
+        downPanel.SetActive(true);
+
+        ClearInventory();
+        ClearCharPanel();
     }
 
 

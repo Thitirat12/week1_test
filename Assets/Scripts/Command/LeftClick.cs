@@ -68,6 +68,9 @@ public class LeftClick : MonoBehaviour
         int i = PartyManager.instance.FindIndexFromClass(hero);
 
         UIManager.instance.ToggleAvatar[i].isOn = true;
+
+        AudioManager.instance.PlaySFX(0);
+
         return i;
 
         //PartyManager.instance.SelectChars.Add(hero);
@@ -133,28 +136,41 @@ public class LeftClick : MonoBehaviour
     
     private void ReleaseSelectionBox(Vector2 mousePos)
     {
-        Vector2 corner1; //down-left corner
-        Vector2 corner2; //top-right corner
-
         boxSelection.gameObject.SetActive(false);
 
-        corner1 = oldAnchoredPos - (boxSelection.sizeDelta / 2);
-        corner2 = oldAnchoredPos + (boxSelection.sizeDelta / 2);
+        Vector2 corner1 = boxSelection.anchoredPosition - (boxSelection.sizeDelta / 2);
+        Vector2 corner2 = boxSelection.anchoredPosition + (boxSelection.sizeDelta / 2);
 
-        foreach (Character member in PartyManager.instance.Members)
+        bool foundAny = false;
+
+        for (int m = 0; m < PartyManager.instance.Members.Count; m++)
         {
+            Character member = PartyManager.instance.Members[m];
+
             Vector2 unitPos = cam.WorldToScreenPoint(member.transform.position);
+
             if ((unitPos.x > corner1.x && unitPos.x < corner2.x)
-                && (unitPos.y > corner1.y && unitPos.y < corner2.y))
+    && (unitPos.y > corner1.y && unitPos.y < corner2.y))
             {
                 Debug.Log($"Found in box: {member.name}");
+
+                if (!PartyManager.instance.SelectChars.Contains(member))
+                {
+                    PartyManager.instance.SelectChars.Add(member);
+                    member.ToggleRingSelection(true);
+                }
+
                 int i = PartyManager.instance.FindIndexFromClass(member);
-                //PartyManager.instance.SelectChars.Add(member);
-                //member.ToggleRingSelection(true);
-                UIManager.instance.ToggleAvatar[i].isOn = true;
+                UIManager.instance.ToggleAvatar[i].SetIsOnWithoutNotify(true);
+
+                foundAny = true;
             }
-            boxSelection.sizeDelta = new Vector2(0, 0);
         }
+
+        if (foundAny)
+            AudioManager.instance.PlaySFX(0);
+
+        boxSelection.sizeDelta = new Vector2(0, 0);
     }
 
 }

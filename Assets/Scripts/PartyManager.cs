@@ -34,14 +34,15 @@ public class PartyManager : MonoBehaviour
     }
     private void Start()
     {
-        //foreach(Character c in members)
-        //{
-        //    c.CharInit(VFXManager.Instance,UIManager.instance,InventoryManager.instance,this);
-        //}
-        SelectSingleHero(0);
+        if (members.Count > 0)
+        {
+            SelectSingleHero(0);
+            UIManager.instance.ShowMagicToggles();
+        }
 
-        //members[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[0]));
-        //members[1].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[1]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[1]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[2]));
+        members[0].MagicSkills.Add(new Magic(VFXManager.Instance.MagicData[3]));
 
         InventoryManager.instance.AddItem(members[0], 0); //Potion
         InventoryManager.instance.AddItem(members[0], 1); //Sword
@@ -55,8 +56,6 @@ public class PartyManager : MonoBehaviour
         //InventoryManager.instance.AddItem(members[1], 3); //Axe
         //InventoryManager.instance.AddItem(members[1], 11); //ShieldB
         ////InventoryManager.instance.AddItem(members[1], 12); //Mana potion
-
-        UIManager.instance.ShowMagicToggles();
     }
 
     private void Update()
@@ -156,13 +155,32 @@ public class PartyManager : MonoBehaviour
 
     public bool HeroJoinParty(Character hero)
     {
-        if(members.Count >= 6)
+        if (hero == null)
             return false;
 
-        hero.CharInit(VFXManager.Instance, UIManager.instance
-            , InventoryManager.instance, this);
+        if (!hero.CompareTag("Hero"))
+            return false;
+
+        Hero h = hero as Hero;
+        if (h == null)
+            return false;
+
+        if (members.Count >= 6)
+            return false;
+
+        if (members.Contains(hero))
+            return false;
+
+        if (Setting.recruitedHeroPrefabIds.Contains(h.PrefabID))
+            return false;
+
+        Setting.recruitedHeroPrefabIds.Add(h.PrefabID);
+
+        hero.CharInit(VFXManager.Instance, UIManager.instance,
+            InventoryManager.instance, this);
 
         members.Add(hero);
+
         return true;
     }
 

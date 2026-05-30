@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0c41260d814ec4683bf8340b639ecc, type: 3}
+  m_Name: 01_GiveMeSword
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  questId: 1
+  type: 0
+  status: 0
+  questName: Get me sword
+  questDetail: Give his father's sword back
+  questItemId: 1
+  questDialogue:
+  - Hello, adventures, How are you?
+  - Can I ask your something?
+  - I want my father's sword back.
+  answerNext:
+  - I'm good.
+  - Absolutely don't take it's too long.
+  answerAccept: Yes, I shall find it for you.
+  answerReject: Sorry, I a lot of thing to do.
+  rewardItemId: 5
+  rewardExp: 300
+  questionInProgress: How it's going?
+  answerFinish: Here your father's sword back.
+  answerNotFinish: Not yet, I try my best.

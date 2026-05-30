@@ -27,6 +27,16 @@ public class InventoryManager : MonoBehaviour
         AddItemShopToNPC(1, 0);
         AddItemShopToNPC(1, 3);
         AddItemShopToNPC(1, 4);
+        AddItemShopToNPC(1, 13);
+        AddItemShopToNPC(1, 14);
+        AddItemShopToNPC(1, 15);
+        AddItemShopToNPC(1, 8);
+        AddItemShopToNPC(1, 7);
+        AddItemShopToNPC(1, 5);
+        AddItemShopToNPC(1, 10);
+        AddItemShopToNPC(1, 11);
+        AddItemShopToNPC(1, 12);
+        AddItemShopToNPC(1, 9);
     }
 
     public bool AddItem(Character character, int id)
@@ -58,10 +68,15 @@ public class InventoryManager : MonoBehaviour
         switch(index)
         {
             case 16:
-                PartyManager.instance.SelectChars[0].EquipShield(item); 
+                PartyManager.instance.SelectChars[0].EquipShield(item);
+                AudioManager.instance.PlaySFX(4);
                 break;
             case 17:
-                PartyManager.instance.SelectChars[0].EquipWeapon(item); 
+                PartyManager.instance.SelectChars[0].EquipWeapon(item);
+                AudioManager.instance.PlaySFX(4);
+                break;
+            default:
+                AudioManager.instance.PlaySFX(0);
                 break;
         }
     }
@@ -77,9 +92,14 @@ public class InventoryManager : MonoBehaviour
         {
             case 16:
                 PartyManager.instance.SelectChars[0].UnEquipShield();
+                AudioManager.instance.PlaySFX(4);
                 break;
             case 17:
                 PartyManager.instance.SelectChars[0].UnEquipWeapon();
+                AudioManager.instance.PlaySFX(3);
+                break;
+            default:
+                AudioManager.instance.PlaySFX(0);
                 break;
         }
     }
